@@ -1,17 +1,14 @@
-	
-class GrassEater {
-    constructor(x, y, index) {
-    this.x = x;
-    this.y = y;
-    this.energy = 14;
-    this.index = index;
-    this.directions = [];
-    }
+let aliv = require("./aliv.js")	
+module.exports = class GrassEater extends aliv{
     
+    constructor(x, y, index) {
+        super(x,y,index);
+    this.energy = 14;
+    }
     getNewCoordinates() {
     this.directions = [
     [this.x - 1, this.y - 1],
-    [this.x, this.y - 1],
+    [this.x,  this.y - 1],
     [this.x + 1, this.y - 1],
     [this.x - 1, this.y],
     [this.x + 1, this.y],
@@ -22,23 +19,9 @@ class GrassEater {
     }
     
     chooseCell(character) {
-    var found = [];
-    this.getNewCoordinates()
-    for (var i in this.directions) {
-    var x = this.directions[i][0];
-    var y = this.directions[i][1];
-    if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-    if (matrix[y][x] == character) {
-    found.push(this.directions[i]);
-    }
-    }
-    
-    }
-    return found;
-    }
-    
-    
-    
+        this.getNewCoordinates()
+        return super.chooseCell(character);
+        }  
     
     mul() {
     var newCell = random(this.chooseCell(1));
@@ -47,12 +30,9 @@ class GrassEater {
     grassEaterArr.push(eater);
     matrix[newCell[1]][newCell[0]] = 2;
     }
-    }
+    } 
     
-    
-    
-    
-    eat() {
+    eat(a) {
     let foods = this.chooseCell(1)
     let food = random(foods)
     if (food) {
@@ -69,7 +49,7 @@ class GrassEater {
     break;
     }
     }
-    if (this.energy >= 16) {
+    if (this.energy >= a) {
     this.mul()
     }
     }
@@ -77,7 +57,7 @@ class GrassEater {
     this.move()
     }
     }
-    eats() {
+    eats(a) {
         let foods = this.chooseCell(5)
         let food = random(foods)
         if (food) {
@@ -99,7 +79,7 @@ class GrassEater {
         }
         }
         else {
-        this.eat()
+        this.eat(a)
         }
         }
     

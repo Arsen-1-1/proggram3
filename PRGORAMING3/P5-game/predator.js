@@ -1,12 +1,10 @@
-	
-class Predator {
+let aliv = require("./aliv.js")	
+
+module.exports = class Predator extends aliv{
 
      constructor(x, y, index) {
-     this.x = x;
-     this.y = y;
+          super(x,y,index);
      this.energy = 30;
-     this.index = index;
-     this.directions = [];
      }
      
      getNewCoordinates() {
@@ -23,22 +21,11 @@ class Predator {
      }
      
      chooseCell(character) {
-     var found = [];
-     this.getNewCoordinates()
-     for (var i in this.directions) {
-     var x = this.directions[i][0];
-     var y = this.directions[i][1];
-     if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-     if (matrix[y][x] == character) {
-     found.push(this.directions[i]);
-     }
-     }
+          this.getNewCoordinates()
+          return super.chooseCell(character);
+          }
      
-     }
-     return found;
-     }
-     
-     eng(){
+     eng(a){
      
           let engi = this.chooseCell(7)
           let engis = random(engi)
@@ -50,21 +37,17 @@ class Predator {
           matrix[engis[1]][engis[0]] = 3
           this.x = newX
           this.y = newY
-          console.log(this.energy)
           if (this.energy <= 0) {
                this.die()
                }
      }
       else{
-          this.eat()
+          this.eat(a)
       }
 
 }   
-     
-     
-   
-     
-     eat() {
+ 
+     eat(a) {
      let foods = this.chooseCell(2)
      let food = random(foods)
      if (food) {
@@ -81,7 +64,7 @@ class Predator {
      break;
      }
      }
-     if (this.energy >= 13) {
+     if (this.energy >= a) {
      this.mul()
      }
      }
