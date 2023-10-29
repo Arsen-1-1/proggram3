@@ -1,6 +1,6 @@
 
 
-const socket =io();
+const socket = io();
 /////////////////////////////////////
 function setup() {
     createCanvas(80 * 40, 80 * 40);
@@ -8,7 +8,7 @@ function setup() {
 }
 
 
-
+var newHashvark = []
 
 function drawhful(matrix) {
 
@@ -36,7 +36,7 @@ function drawhful(matrix) {
                 fill("black");
             }
             else if (matrix[y][x] == 8) {
-                fill("brown");
+                fill("");
             }
 
             else if (matrix[y][x] == 0) {
@@ -46,70 +46,74 @@ function drawhful(matrix) {
 
 
             rect(x * 40, y * 40, 40, 40)
-         
+
         }
     }
-    
-   
+
+
 
     let one = document.getElementById('sv');
     let two = document.getElementById('sx');
     let three = document.getElementById('sc');
 
-function oun(){
-let b = 1
-socket.emit("clik", b)
-}
-two.addEventListener("click",oun)
-function to(){
-    let a = 1
-    // console.log("aa")
-    // console.log("b")
-    socket.emit("click", a)
+    function to() {
+        socket.emit("click")
     }
 
-one.addEventListener("click",to)
-function un(){
-    let s = 1
-    socket.emit("clicks", s)
+    one.addEventListener("click", to)
+    function oun() {
+        socket.emit("clik")
+    }
+    two.addEventListener("click", oun)
+
+    function un() {
+        socket.emit("clicks")
     }
 
-three.addEventListener("click", un)
+    three.addEventListener("click", un)
 }
 
-
-function aa(jama){
-    if(jama <= 25){
-        document.body.style.background = "linear-gradient(rgb(1, 189, 1),rgb(1, 100, 1))" 
-        jamanak.innerText ="spring"
-        jamanak.style.color= "rgb(1, 189, 1)" 
-        jm ="spring"
+function aa(jama) {
+    if(jama == 25){
+    console.log(newHashvark + "///// sax en mnacel   ///" + newHashvark[0] + "grass  //" + newHashvark[1] + "grasseater  //" + newHashvark[2] + "predator  //" + newHashvark[3] + "caxik  //" + newHashvark[5] + "parasite  //")
     }
-    else if(jama >25 && jama<=50){
-        document.body.style.background = "linear-gradient(rgb(255, 215, 0,2),rgb(245, 165, 49,2),rgb(245, 165, 76,2))" 
-        jamanak.innerText ="summer"
-        jamanak.style.color= "rgb(245, 165, 76,2)"
-        jm = "summer"
+
+
     
+    if (jama <= 25) {
+        document.body.style.background = "linear-gradient(rgb(1, 189, 1),rgb(1, 100, 1))"
+        jamanak.innerText = "spring"
+        jamanak.style.color = "rgb(1, 189, 1)"
+        jm = "spring"
+    }
+    else if (jama > 25 && jama <= 50) {
+        document.body.style.background = "linear-gradient(rgb(255, 215, 0,2),rgb(245, 165, 49,2),rgb(245, 165, 76,2))"
+        jamanak.innerText = "summer"
+        jamanak.style.color = "rgb(245, 165, 76,2)"
+        jm = "summer"
+
 
     }
-    else if(jama >50 && jama<=75 ){
-        document.body.style.background = "linear-gradient(rgb(220, 80, 5,2),rgb(196, 15, 5,3),rgb(128, 0, 0))" 
-        jamanak.innerText ="autumn"
-        jamanak.style.color= "rgb(128, 0, 0)"
+    else if (jama > 50 && jama <= 75) {
+        document.body.style.background = "linear-gradient(rgb(220, 80, 5,2),rgb(196, 15, 5,3),rgb(128, 0, 0))"
+        jamanak.innerText = "autumn"
+        jamanak.style.color = "rgb(128, 0, 0)"
         jm = "autumn"
     }
-    else if(jama >75 && jama<=100){
-         document.body.style.background = "linear-gradient(rgb(248, 248, 255),rgb( 186, 210, 236),rgb(186, 184, 236))"  
-         jamanak.innerText ="winter"
-         jamanak.style.color= "rgb(186, 184, 236)" 
-         jm = "winter"
-        }
+    else if (jama > 75 && jama <= 100) {
+        document.body.style.background = "linear-gradient(rgb(248, 248, 255),rgb( 186, 210, 236),rgb(186, 184, 236))"
+        jamanak.innerText = "winter"
+        jamanak.style.color = "rgb(186, 184, 236)"
+        jm = "winter"
+    }
 
-        if(jama%15==0){
+    if (jama % 15 == 0) {
         socket.emit("jam", jm)
-        }
+    }
 
 }
+socket.on("hasvark", (hashvark)=>{
+    newHashvark  = hashvark
+})
 socket.on("draw matrix", drawhful);
 socket.on('tari', aa)

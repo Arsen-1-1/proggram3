@@ -49,6 +49,12 @@ module.exports =class Mammoth extends aliv{
             let newX = newCell[0]
             let newY = newCell[1]
             matrix[this.y][this.x] = 0
+            for (var i in grassEaterArr) {
+                if (newX == grassEaterArr[i].x && newY == grassEaterArr[i].y) {
+               grassEaterArr.splice(i, 1);
+                break;
+                }
+                }
 
             matrix[newY][newX] = 8
             this.x = newX
@@ -66,7 +72,12 @@ module.exports =class Mammoth extends aliv{
             let newX = newCell[0]
             let newY = newCell[1]
             matrix[this.y][this.x] = 0
-
+            for (var i in predatorArr) {
+                if (newX == predatorArr[i].x && newY == predatorArr[i].y) {
+               predatorArr.splice(i, 1);
+                break;
+                }
+                }
             matrix[newY][newX] = 8
             this.x = newX
             this.y = newY
