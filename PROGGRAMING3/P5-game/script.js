@@ -35,7 +35,9 @@ function drawhful(matrix) {
             else if (matrix[y][x] == 7) {
                 fill("black");
             }
-
+            else if (matrix[y][x] == 8) {
+                fill("brown");
+            }
 
             else if (matrix[y][x] == 0) {
                 fill("darkgray");
@@ -61,8 +63,8 @@ socket.emit("clik", b)
 two.addEventListener("click",oun)
 function to(){
     let a = 1
-    console.log("aa")
-    console.log("b")
+    // console.log("aa")
+    // console.log("b")
     socket.emit("click", a)
     }
 
@@ -111,70 +113,3 @@ function aa(jama){
 }
 socket.on("draw matrix", drawhful);
 socket.on('tari', aa)
-
-
-
-
-
-
-
-
-
-
-// var sc = document.getElementById("sc");
-// function gb() {
-//     if(jm!="winter" ){
-//     x = Math.floor(random( 80))
-//    y = Math.floor(random( 80))
-//     for (var o = 0; o <= 2; o++) {
-//         for (var p = 0; p <= 2; p++) {
-//             y++
-//             matrix[x][y] = 6
-//         }
-//         y -= 3
-//         x++
-//     }
-//     for (var y = 0; y < matrix.length; y++) {
-//         for (var x = 0; x < matrix[y].length; x++) {
-//             if (matrix[y][x] == 6) {
-//                 kr = new Krak(x, y, 6)
-//                 krakArr.push(kr)
-//             }
-//         }
-//     }
-//  }
-//  }
-//  sc.addEventListener("click", gb);
-
-
-
-// ////
-
-
-
-
-
-
-
-
-
-// /////
-
-// var sv = document.getElementById("sv");
-// function mb() {
-//     console.log("AA")
-//     x = Math.floor(random( 80))
-//      y = Math.floor(random( 80))
-//     matrix[x][y] = 2
-//     for (var y = 0; y < matrix.length; y++) {
-//         for (var x = 0; x < matrix[y].length; x++) {
-//             if (matrix[y][x] == 2) {
-//                  eater = new GrassEater(x, y, 2)
-
-//                 grassEaterArr.push(eater)
-//             }
-//         }
-//     }
-// }
-// sv.addEventListener("click", mb);
-// // //////

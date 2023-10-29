@@ -33,6 +33,7 @@ let aliv = require('./aliv.js')
 let Krak = require("./krak.js")
 let Caxik = require("./Caxik.js")
 let Parasite = require("./Parasite.js")
+let Mammoth = require("./mammoth")
 let random = require("./random");
 const { json } = require("express");
 
@@ -42,6 +43,7 @@ predatorArr = [];
 caxArr = [];
 krakArr = [];
 parasiteArr = [];
+MammothArr = [];
 
 
 
@@ -82,11 +84,12 @@ function createMatrix() {
   }
 
 
-  character(2, 10)
-  character(1, 568)
-  character(3, 14)
-  character(4, 4)
-  character(7, 4)
+  //character(2, 10)
+  character(1, 1000)
+  //character(3, 14)
+  //character(4, 4)
+  //character(7, 4)
+  character(8, 10)
 
   for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[y].length; x++) {
@@ -114,6 +117,11 @@ function createMatrix() {
       else if (matrix[y][x] == 7) {
         par = new Parasite(x, y, 7)
         parasiteArr.push(par)
+      }
+      else if (matrix[y][x] == 8) {
+        mammo = new Mammoth(x, y, 7)
+
+        MammothArr.push(mammo)
       }
 
     }
@@ -222,6 +230,11 @@ if(jama == 40 ){
     }
 
   }
+  for (var i in MammothArr) {
+    if(jmS == "winter"){
+    MammothArr[i].move()
+    }
+  }
      hasvark[0]=grassArr.length;
      hasvark[1]=grassEaterArr.length;
      hasvark[2]=predatorArr.length;
@@ -258,8 +271,8 @@ function oui(b) {
     b = 0
   }
 }
-console.log("a")
-console.log(jama)
+//console.log("a")
+//console.log(jama)
   }
  
 }
